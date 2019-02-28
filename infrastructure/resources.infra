@@ -1,1 +1,6 @@
- /root/.pulumi/bin/pulumi new --force
+cd /infrasource
+/root/.pulumi/bin/pulumi stack select andreujuanc/remindr/various
+/root/.pulumi/bin/pulumi config set azure:environment public
+/root/.pulumi/bin/pulumi config set password --secret $CLUSTER_PASSWORD
+ssh-keygen -t rsa -f key.rsa
+/root/.pulumi/bin/pulumi config set sshPublicKey < key.rsa.pub

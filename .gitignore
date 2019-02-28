@@ -59,3 +59,9 @@ typings/
 
 # next.js build output
 .next
+
+
+/bin/
+/node_modules/
+key.rsa
+key.rsa.pub

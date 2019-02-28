@@ -8,6 +8,7 @@ ENV NODEJS_VERSION "6.10.0"
 
 RUN apt-get update -qq && \
     apt-get install -qqy --no-install-recommends\
+      openssh-client \
       apt-transport-https \
       build-essential \
       curl \
