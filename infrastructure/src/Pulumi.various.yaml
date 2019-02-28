@@ -1,4 +1,4 @@
 config:
   azure:environment: public
   remindr:password:
-    secure: AAABAOJMwkK1kJ4oan53HCa/4C9AvHU2YDnYLuRCs2bx0knc
+    secure: AAABAMLRDn9Lum7DoQw2nvxfG1cWAZebjXqtzOaadDY+wyfn

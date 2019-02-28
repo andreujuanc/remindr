@@ -19,16 +19,9 @@ RUN apt-get update -qq && \
       rlwrap \
       vim \
       nano \
-      jq && \
-    rm -rf /var/lib/apt/lists/* && \
-    curl https://deb.nodesource.com/${NODEJS_APT_ROOT}/pool/main/n/nodejs/nodejs_${NODEJS_VERSION}-1nodesource1~jessie1_amd64.deb > node.deb && \
-      dpkg -i node.deb && \
-      rm node.deb && \
-      npm install --global azure-cli@${AZURE_CLI_VERSION} && \
-      azure --completion >> ~/azure.completion.sh && \
-      echo 'source ~/azure.completion.sh' >> ~/.bashrc && \
-      azure
+      jq 
 
-RUN azure config mode arm
+
+RUN curl -L https://aka.ms/InstallAzureCli | bash
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV EDITOR vim
