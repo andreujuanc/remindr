@@ -8,8 +8,10 @@ RUN apk add  \
       libc6-compat \
       openssh-client \
       curl \
-      ca-certificates \
-      nano 
+      ca-certificates  \
+      nano
+
+RUN apk add nodejs
 
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/root/.pulumi/bin"
