@@ -1,6 +1,6 @@
 const azure = require("@pulumi/azure")
 
-const resourceGroupName = new azure.core.ResourceGroup("my-group", {
+const resourceGroupName = new azure.core.ResourceGroup("AmazingResourceGroup", {
     location: "westus2",
 });
 
