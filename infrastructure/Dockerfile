@@ -12,4 +12,4 @@ RUN apk add  \
       nano 
 
 RUN curl -fsSL https://get.pulumi.com | sh
-RUN export PATH="/root/.pulumi/bin;$PATH"
+ENV PATH="$PATH:/root/.pulumi/bin"
