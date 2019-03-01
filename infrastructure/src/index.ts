@@ -5,9 +5,9 @@ const resourceGroupName = new azure.core.ResourceGroup("Reminder", {
 });
 
 
-// import * as helm from "@pulumi/kubernetes/helm";
-// import * as k8s from "@pulumi/kubernetes";
-// import { k8sCluster, k8sProvider } from "./cluster";
+import * as helm from "@pulumi/kubernetes/helm";
+import * as k8s from "@pulumi/kubernetes";
+import { k8sCluster, k8sProvider } from "./cluster";
 
 // const apache = new helm.v2.Chart(
 //     "apache",
