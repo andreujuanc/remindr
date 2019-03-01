@@ -15,3 +15,8 @@ RUN apk add nodejs
 
 RUN curl -fsSL https://get.pulumi.com | sh
 ENV PATH="$PATH:/root/.pulumi/bin"
+
+WORKDIR /infrasourceTMP
+COPY ./src/package.json .
+RUN npm install
+WORKDIR /
