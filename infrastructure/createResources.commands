@@ -11,8 +11,8 @@ ls
 
 pulumi stack select andreujuanc/remindr/various
 # pulumi plugin install resource azure v0.16.9
-# pulumi config set azure:environment public
-# pulumi config set password --secret $CLUSTER_PASSWORD
-# ssh-keygen -t rsa -f key.rsa
-# pulumi config set sshPublicKey < key.rsa.pub
+pulumi config set azure:environment public
+pulumi config set password --secret $CLUSTER_PASSWORD
+#ssh-keygen -t rsa -f key.rsa
+pulumi config set sshPublicKey < key.rsa.pub
 pulumi up
