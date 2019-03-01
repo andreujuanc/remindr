@@ -5,6 +5,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apk update 
 RUN apk add  \
       wget \
+      libc6-compat \
       openssh-client \
       curl \
       ca-certificates \
