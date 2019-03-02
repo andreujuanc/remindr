@@ -16,6 +16,9 @@ polka()
         console.log(`~> Hello, ${req.hello}`);
         res.end(`User: ${req.params.id}`);
     })
+    .get('/', (req, res) => {
+        res.end(`OK`);
+    })
     .listen(3000, err => {
         if (err) throw err;
         console.log(`> Running on localhost:3000`);

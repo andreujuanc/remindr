@@ -13,30 +13,16 @@ import { k8sCluster, k8sProvider } from "./cluster";
 const lco: helm.v2.LocalChartOpts = {
     path: './charts/remindr',
     values: {
-        // image: {
-        //     //registry: 'docker.com',
-        //     repository: 'andreujuanc/remindr' ,
-        //     tag: 'latest'
-        // },
+        image: {
+            repository: 'andreujuanc/remindr' ,
+            tag: 'v0.2'
+        },
         service: {
             type: 'LoadBalancer'
             //port: 80
         }
     }
 };
-// const appChart: helm.v2.ChartOpts = {
-//     chart: 'bitnami/node',
-//     values: {
-//         // image: {
-//         //     registry: 'docker.com',
-//         //     repository: 'andreujuanc/remindr' ,
-//         //     tag: 'latest'
-//         // },
-//         service: {
-//             type: 'LoadBalancer'
-//         }
-//     }
-// }
 
 const remindrChart = new helm.v2.Chart(
     "remindr",

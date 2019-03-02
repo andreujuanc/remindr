@@ -17,7 +17,7 @@ pulumi config set applicationClientSecret --secret $ARM_CLIENT_SECRET
 # Helm
 helm repo update
 helm repo add bitnami https://charts.bitnami.com/bitnami
-
+# helm dependency update
 
 #ssh-keygen -t rsa -f key.rsa
 pulumi config set sshPublicKey < key.rsa.pub

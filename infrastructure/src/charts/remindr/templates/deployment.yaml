@@ -32,25 +32,6 @@ spec:
         - name: {{ . }}
       {{- end}}
       {{- end }}
-      initContainers:
-      - name: git-clone-repository
-        image: "{{ template "git.image" . }}"
-        imagePullPolicy: {{ .Values.git.pullPolicy | quote }}
-        command: [ '/bin/sh', '-c' , 'git clone {{ .Values.repository }} /app && cd /app && git checkout {{ .Values.revision }}']
-        volumeMounts:
-        - name: app
-          mountPath: /app
-      - name: npm-install
-        image: "{{ template "node.image" . }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
-        workingDir: /app
-        command: ['/bin/bash', '-c', 'npm install']
-        env:
-        - name: HOME
-          value: /tmp
-        volumeMounts:
-        - name: app
-          mountPath: /app
       containers:
       - name: {{ template "node.fullname" . }}
         image: "{{ template "node.image" . }}"
@@ -117,8 +98,8 @@ spec:
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 8 }}
 {{- end }}
-        workingDir: /app
-        command: ['/bin/bash', '-c', 'npm start']
+        # workingDir: /app
+        # command: ['/bin/bash', '-c', 'npm start']
         ports:
         - name: http
           containerPort: {{ .Values.applicationPort }}
@@ -138,18 +119,3 @@ spec:
           periodSeconds: 5
         resources:
 {{ toYaml .Values.resources | indent 10 }}
-        volumeMounts:
-        - name: app
-          mountPath: /app
-        - name: data
-          mountPath: {{ .Values.persistence.path }}
-      volumes:
-      - name: app
-        emptyDir: {}
-      - name: data
-      {{- if .Values.persistence.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ template "fullname" . }}
-      {{- else }}
-        emptyDir: {}
-      {{- end }}
