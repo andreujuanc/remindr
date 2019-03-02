@@ -13,11 +13,11 @@ import { k8sCluster, k8sProvider } from "./cluster";
 const lco: helm.v2.LocalChartOpts = {
     path: './charts/remindr',
     values: {
-        image: {
-            //registry: 'docker.com',
-            repository: 'andreujuanc/remindr' ,
-            tag: 'latest'
-        },
+        // image: {
+        //     //registry: 'docker.com',
+        //     repository: 'andreujuanc/remindr' ,
+        //     tag: 'latest'
+        // },
         service: {
             type: 'LoadBalancer'
             //port: 80
@@ -46,6 +46,6 @@ const remindrChart = new helm.v2.Chart(
 
 export let cluster = k8sCluster.name;
 //export let kubeConfig = k8sCluster.kubeConfigRaw;
-export let serviceIP = remindrChart.resources
+export let serviceIP = remindrChart.resources;
     // .getResourceProperty("v1/Service", "remindr-node", "status")
     // .apply(status => status.loadBalancer.ingress[0].ip);
