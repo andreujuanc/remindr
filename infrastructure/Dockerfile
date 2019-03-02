@@ -21,7 +21,7 @@ ENV PATH="$PATH:/root/.pulumi/bin"
 #HELM CLI
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get | sh
 RUN helm init --client-only
-RUN helm repo add bitnami https://charts.bitnami.com/bitnami
+#RUN helm repo add bitnami https://charts.bitnami.com/bitnami
 
 #Preare node_modules
 WORKDIR /infrasource
