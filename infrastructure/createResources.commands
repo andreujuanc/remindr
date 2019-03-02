@@ -3,11 +3,6 @@ az login --service-principal -u $ARM_CLIENT_URL -p $ARM_CLIENT_SECRET --tenant $
 echo $ARM_SUBSCRIPTION_ID
 cp -a /infrasourceTMP/. /infrasource
 cd /infrasource
-echo "*******************88"
-ls
-# npm install
-# rm key.rsa
-# rm key.rsa.pub
 
 pulumi stack select andreujuanc/remindr/various
 # pulumi plugin install resource azure v0.16.9
