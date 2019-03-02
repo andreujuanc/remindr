@@ -4,15 +4,16 @@ import * as k8s from "@pulumi/kubernetes";
 import * as config from "./config";
 
 // Create the AD service principal for the K8s cluster.
-let adApp = new azure.ad.Application("aks");
-let adSp = new azure.ad.ServicePrincipal("aksSp", { applicationId: adApp.applicationId });
-let adSpPassword = new azure.ad.ServicePrincipalPassword("aksSpPassword", {
-    servicePrincipalId: adSp.id,
-    value: config.password,
-    endDate: "2099-01-01T00:00:00Z",
-});
+//let adApp = new azure.ad.Application("aks");
 
-// Now allocate an AKS cluster.
+// let adSp = new azure.ad.ServicePrincipal("aksSp", { applicationId: adApp.applicationId });
+// let adSpPassword = new azure.ad.ServicePrincipalPassword("aksSpPassword", {
+//     servicePrincipalId: adSp.id,
+//     value: config.password,
+//     endDate: "2099-01-01T00:00:00Z",
+// });
+
+// // Now allocate an AKS cluster.
 export const k8sCluster = new azure.containerservice.KubernetesCluster("aksCluster", {
     resourceGroupName: config.resourceGroup.name,
     location: config.location,
@@ -29,8 +30,8 @@ export const k8sCluster = new azure.containerservice.KubernetesCluster("aksClust
         }],
     },
     servicePrincipal: {
-        clientId: adApp.applicationId,
-        clientSecret: adSpPassword.value,
+        clientId: config.applicationClientId /*adApp.applicationId*/,
+        clientSecret: config.applicationClientSecret /* adSpPassword.value*/,
     },
 }); 
 

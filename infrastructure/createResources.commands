@@ -1,5 +1,5 @@
 echo STARTING
-az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+az login --service-principal -u $ARM_CLIENT_URL -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 echo $ARM_SUBSCRIPTION_ID
 cp -a /infrasourceTMP/. /infrasource
 cd /infrasource
@@ -13,6 +13,12 @@ pulumi stack select andreujuanc/remindr/various
 # pulumi plugin install resource azure v0.16.9
 pulumi config set azure:environment public
 pulumi config set password --secret $CLUSTER_PASSWORD
+
+# Temp until i can create app registrations in my subscriptions.
+# After that App and Service principal will be created tru pulumi as well.
+pulumi config set applicationClientId $ARM_CLIENT_ID
+pulumi config set applicationClientSecret --secret $ARM_CLIENT_SECRET
+
 #ssh-keygen -t rsa -f key.rsa
 pulumi config set sshPublicKey < key.rsa.pub
 pulumi up

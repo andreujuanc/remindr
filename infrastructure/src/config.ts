@@ -11,3 +11,5 @@ export const nodeCount = config.getNumber("nodeCount") || 2;
 export const nodeSize = config.get("nodeSize") || "Standard_D2_v2";
 export const sshPublicKey = config.require("sshPublicKey");
 export const resourceGroup = new azure.core.ResourceGroup("aks", { location });
+export const applicationClientId = config.require('applicationClientId');
+export const applicationClientSecret = config.require('applicationClientSecret');
