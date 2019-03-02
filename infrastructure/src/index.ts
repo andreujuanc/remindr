@@ -14,12 +14,13 @@ const lco: helm.v2.LocalChartOpts = {
     path: './charts/remindr',
     values: {
         image: {
-            registry: 'docker.com',
+            //registry: 'docker.com',
             repository: 'andreujuanc/remindr' ,
             tag: 'latest'
         },
         service: {
             type: 'LoadBalancer'
+            //port: 80
         }
     }
 };

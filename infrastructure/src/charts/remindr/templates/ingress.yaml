@@ -1,39 +1,37 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "remindr.fullname" . -}}
+{{- if .Values.ingress.enabled }}
+{{- range .Values.ingress.hosts }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ template "node.fullname" $ }}
   labels:
-    app.kubernetes.io/name: {{ include "remindr.name" . }}
-    helm.sh/chart: {{ include "remindr.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-  {{- with .Values.ingress.annotations }}
+    app: {{ template "node.name" $ }}
+    chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    release: "{{ $.Release.Name }}"
+    heritage: "{{ $.Release.Service }}"
   annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- if .certManager }}
+    kubernetes.io/tls-acme: "true"
+    {{- end }}
+    {{- range $key, $value := .annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
 spec:
-{{- if .Values.ingress.tls }}
-  tls:
-  {{- range .Values.ingress.tls }}
-    - hosts:
-      {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
-      secretName: {{ .secretName }}
-  {{- end }}
-{{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
-      http:
-        paths:
-        {{- range .paths }}
-          - path: {{ . }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: http
-        {{- end }}
-  {{- end }}
+  - host: {{ .name }}
+    http:
+      paths:
+        - path: {{ default "/" .path }}
+          backend:
+            serviceName: {{ template "node.fullname" $ }}
+            servicePort: 80
+{{- if .tls }}
+  tls:
+  - hosts:
+    - {{ .name }}
+    secretName: {{ .tlsSecret }}
 {{- end }}
+---
+{{- end }}
+{{- end }}
+
