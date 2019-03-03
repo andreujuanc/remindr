@@ -19,7 +19,7 @@ spec:
   ports:
   - name: http
     port: {{ .Values.service.port }}
-    targetPort: http
+    targetPort: {{ .Values.applicationPort }}
     {{- if .Values.service.nodePort }}
     nodePort: {{ .Values.service.nodePort }}
     {{- end }}

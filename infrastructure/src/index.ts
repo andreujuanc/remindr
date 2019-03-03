@@ -9,17 +9,20 @@ import * as helm from "@pulumi/kubernetes/helm";
 import * as k8s from "@pulumi/kubernetes";
 import { k8sCluster, k8sProvider } from "./cluster";
 
-
+const imageTag = 'v0.5';
 const lco: helm.v2.LocalChartOpts = {
     path: './charts/remindr',
     values: {
         image: {
             repository: 'andreujuanc/remindr' ,
-            tag: 'v0.3'
+            tag: imageTag
         },
         service: {
             type: 'LoadBalancer'
             //port: 80
+        },
+        extraEnv: {
+            'DOCKER_IMAGE_TAG': imageTag
         }
     }
 };

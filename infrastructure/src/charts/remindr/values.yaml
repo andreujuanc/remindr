@@ -23,19 +23,6 @@ image:
   # pullSecrets:
   #   - myRegistrKeySecretName
 
-## Bitnami git image version
-## ref: https://hub.docker.com/r/bitnami/git/tags/
-##
-git:
-  registry: docker.io
-  repository: bitnami/git
-  tag: latest
-  pullPolicy: IfNotPresent
-
-## Git repository http/https
-##
-repository:  https://github.com/bitnami/sample-mean.git
-
 ## Git repository revision to checkout
 ##
 revision: master
