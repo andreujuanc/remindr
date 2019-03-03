@@ -7,7 +7,7 @@ logger.info(`MongoDb: ${connectionOpts.db.address}`);
 
 const agenda = new Agenda(connectionOpts);
 
-const jobTypes = ['appointment'];
+const jobTypes = ['appointment']; //maybe loadthem from filesystem?
 
 jobTypes.forEach(type => {
     require('./jobs/' + type)(agenda);
@@ -21,5 +21,10 @@ agenda.on('ready', function(){
     agenda.now('appointment');
 });
 
+const scheduler = {
+    create: (data)=>{
+        agenda.schedule('in 1 minute', 'appointment', data)
+    }
+}
 
-module.exports = agenda;
+module.exports = scheduler;

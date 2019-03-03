@@ -11,10 +11,9 @@ module.exports = polka()
         send(res, 200, { name: 'john' });
     })
     .post('/', (req, res) => {
-        logger.info(`Scheduling new appointment ${req.hello}`);
-
-        res.end({
-
-        });
+        logger.info(`Appointment: Scheduling`);
+        const appointment = scheduler.create('not yet from request');
+        send(res, 200, appointment);
+        logger.info(`Appointment: Scheduled`);
     })
 
