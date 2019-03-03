@@ -16,14 +16,20 @@ jobTypes.forEach(type => {
 if (jobTypes.length) {
     agenda.start(); // Returns a promise, which should be handled appropriately
 }
-agenda.on('ready', function(){
+agenda.on('ready', function () {
     logger.info('Agenda is ready')
     agenda.now('appointment');
 });
 
 const scheduler = {
-    create: (data)=>{
-        agenda.schedule('in 1 minute', 'appointment', data)
+    getAppointments: async () => {
+        logger.info('getAppointments - starting');
+        const jobs = await agenda.jobs({ lastFinishedAt: null });
+        logger.info(`getAppointments: got ${jobs.length} jobs.`);
+        return jobs;
+    },
+    create: (time, data) => {
+        agenda.schedule(time, 'appointment', data)
     }
 }
 
