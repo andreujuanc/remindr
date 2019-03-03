@@ -17,7 +17,7 @@ polka()
         res.end(`User: ${req.params.id}`);
     })
     .get('/', (req, res) => {
-        res.end(`OK`);
+        res.end(`OK ${new Date().toISOString()}`);
     })
     .listen(3000, err => {
         if (err) throw err;

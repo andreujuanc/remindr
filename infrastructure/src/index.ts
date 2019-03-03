@@ -15,7 +15,7 @@ const lco: helm.v2.LocalChartOpts = {
     values: {
         image: {
             repository: 'andreujuanc/remindr' ,
-            tag: 'v0.2'
+            tag: 'v0.3'
         },
         service: {
             type: 'LoadBalancer'
