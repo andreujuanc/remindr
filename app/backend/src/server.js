@@ -1,25 +1,14 @@
 const polka = require('polka');
+const logger = require('./logger');
 
-function one(req, res, next) {
-    req.hello = 'world';
-    next();
-}
+logger.info('Starting Remindr')
 
-function two(req, res, next) {
-    req.foo = '...needs better demo 😔';
-    next();
-}
+const { PORT=3000, NODE_ENV } = process.env;
+const dev = NODE_ENV !== 'production';
 
 polka()
-    .use(one, two)
-    .get('/users/:id', (req, res) => {
-        console.log(`~> Hello, ${req.hello}`);
-        res.end(`User: ${req.params.id}`);
-    })
-    .get('/', (req, res) => {
-        res.end(`OK ${new Date().toISOString()}`);
-    })
-    .listen(3000, err => {
+    require('./api') //NO NEED TO MOUNT 
+    .listen(PORT, err => {
         if (err) throw err;
-        console.log(`> Running on localhost:3000`);
+        logger.info(`Running on port ${PORT}`);
     });
