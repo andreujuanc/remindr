@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "winston": "^3.2.1",
-    "polka": "^0.5.2"
+    "polka": "^0.5.2",
+    "agenda": "^2.0.2"
   }
 }
