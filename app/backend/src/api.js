@@ -1,10 +1,20 @@
 const polka = require('polka');
-const { DOCKER_IMAGE_TAG='notset'} = process.env;
+const bodyParser = require('body-parser');
+const send = require('@polka/send-type');
+
+const logger = require('./logger')
+const scheduler = require('./scheduler/index');
+
 module.exports = polka()
-    .get('/users/:id', (req, res) => {
-        console.log(`~> Hello, ${req.hello}`);
-        res.end(`User: ${req.params.id}`);
-    })
+    //.use(bodyParser)
     .get('/', (req, res) => {
-        res.end(`OK - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
+        send(res, 200, { name: 'john' });
     })
+    .post('/', (req, res) => {
+        logger.info(`Scheduling new appointment ${req.hello}`);
+
+        res.end({
+
+        });
+    })
+

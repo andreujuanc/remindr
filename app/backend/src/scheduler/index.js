@@ -1,4 +1,5 @@
 const Agenda = require('agenda');
+
 const logger = require('../logger');
 const { MONGO_URL } = process.env;
 const connectionOpts = { db: { address: `mongodb://${MONGO_URL}/remindr-agenda`, collection: 'agendaJobs' } };

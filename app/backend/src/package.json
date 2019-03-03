@@ -12,6 +12,8 @@
   "dependencies": {
     "winston": "^3.2.1",
     "polka": "^0.5.2",
-    "agenda": "^2.0.2"
+    "@polka/send-type": "^0.5.2",
+    "agenda": "^2.0.2",
+    "body-parser": "^1.18.3"
   }
 }

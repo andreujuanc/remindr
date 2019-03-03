@@ -1,15 +1,19 @@
 const polka = require('polka');
 const logger = require('./logger');
 const agenda = require('./scheduler');
+const api = require('./api');
 
 logger.info('Starting Remindr')
 
-const { PORT=3000, NODE_ENV, OMG } = process.env;
-const dev = NODE_ENV !== 'production';
+const { PORT=3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG='notset' } = process.env;
+
 logger.info(`TESTING ENV VARS: ${OMG}`)
 
 polka()
-    require('./api') //NO NEED TO MOUNT 
+    .use('scheduler', api)
+    .get('/', (req, res) => {
+        res.end(`OK - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
+    })
     .listen(PORT, err => {
         if (err) throw err;
         logger.info(`Running on port ${PORT}`);
