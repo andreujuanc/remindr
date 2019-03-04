@@ -10,7 +10,7 @@ const agenda = new Agenda(connectionOpts);
 const jobTypes = ['appointment']; //TODO: maybe loadthem from filesystem? or just hardcode it?
 
 jobTypes.forEach(type => {
-    require('./jobs/' + type)(agenda);
+    agenda.define(type, require('./jobs/' + type));
 });
 
 if (jobTypes.length) {

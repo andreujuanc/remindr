@@ -16,8 +16,8 @@ const logger = createLogger({
         // - Write to all logs with level `info` and below to `combined.log`
         // - Write all logs error (and below) to `error.log`.
         //
-        new transports.File({ filename: 'quick-start-error.log', level: 'error' }),
-        new transports.File({ filename: 'quick-start-combined.log' })
+        new transports.File({ filename: 'logs/quick-start-error.log', level: 'error' }),
+        new transports.File({ filename: 'logs/quick-start-combined.log' })
     ]
 });
 
