@@ -29,7 +29,7 @@ const scheduler = {
     },
     create: (when, event) => {
         logger.info('scheduler.create - starting');
-        agenda.schedule(when, 'appointment', event)
+        agenda.schedule(when, 'appointment', { event })
         logger.info(`scheduler.create - starting: ${when} - ${event}`);
     }
 }
