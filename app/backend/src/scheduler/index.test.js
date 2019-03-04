@@ -4,9 +4,6 @@ const winston = require('../logger')
 jest.mock('../logger')
 jest.mock('agenda')
 
-// const app = appointment(agenda);
-//         expect(agenda.define).toBeCalledTimes(1);
-
 function inXMinutes(m = 1) {
     const now = new Date();
     now.setUTCMinutes(now.getUTCMinutes() + m)
