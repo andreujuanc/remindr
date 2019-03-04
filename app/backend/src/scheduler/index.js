@@ -20,6 +20,10 @@ agenda.on('ready', function () {
     logger.info('Agenda is ready')
 });
 
+function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
+}
+
 const scheduler = {
     getAppointments: async () => {
         logger.info('scheduler.getAppointments - starting');
@@ -29,11 +33,21 @@ const scheduler = {
     },
     create: (when, event) => {
         logger.info('scheduler.create - starting');
-        if(!when){
+        if (!when) {
             throw new Error('Parameter not found: "when" is mandatory')
         }
-        if(!event){
+        else if (!isValidDate(new Date(when))) {
+            throw new Error('Parameter "when" must be a valid ISO date')
+        }
+        else if (new Date(when) < Date.now() + 1) {
+            throw new Error('Parameter "when" must not be a past date')
+        }
+
+        if (!event) {
             throw new Error('Parameter not found: "event" is mandatory')
+        }
+        else if(typeof event !== 'string'){
+            throw new Error('Parameter "event" must be a string')
         }
         agenda.schedule(when, 'appointment', { event })
         logger.info(`scheduler.create - starting: ${when} - ${event}`);
