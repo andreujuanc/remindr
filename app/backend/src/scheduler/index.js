@@ -29,6 +29,12 @@ const scheduler = {
     },
     create: (when, event) => {
         logger.info('scheduler.create - starting');
+        if(!when){
+            throw new Error('Parameter not found: "when" is mandatory')
+        }
+        if(!event){
+            throw new Error('Parameter not found: "event" is mandatory')
+        }
         agenda.schedule(when, 'appointment', { event })
         logger.info(`scheduler.create - starting: ${when} - ${event}`);
     }

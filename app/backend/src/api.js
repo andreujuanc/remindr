@@ -30,6 +30,7 @@ module.exports = polka()
             logger.info(`Appointment: Scheduled`);
         } catch (ex) {
             logger.error(ex)
+            send(res, 500, { message: ex.message } );
         }
     })
 
