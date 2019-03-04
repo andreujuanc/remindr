@@ -6,7 +6,10 @@ const logger = require('./logger')
 const scheduler = require('./scheduler/index');
 
 module.exports = polka()
-    //.use(bodyParser)
+    .use(bodyParser.urlencoded({
+        extended: true
+    }))
+    .use(bodyParser.json())
     .get('/', async (req, res) => {
         logger.info('GET API /scheduler START');
         const list = await scheduler.getAppointments()
@@ -19,10 +22,14 @@ module.exports = polka()
     })
     .post('/', (req, res) => {
         logger.info(`Appointment: Scheduling`);
-        const time = 'in 10 seconds';
-        const data = '';
-        const appointment = scheduler.create(time, data);
-        send(res, 200, appointment);
-        logger.info(`Appointment: Scheduled`);
+        try {
+            const when = req.body.when;
+            const event = req.body.event;
+            const appointment = scheduler.create(when, event);
+            send(res, 200, appointment);
+            logger.info(`Appointment: Scheduled`);
+        } catch (ex) {
+            logger.error(ex)
+        }
     })
 

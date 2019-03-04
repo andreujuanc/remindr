@@ -7,7 +7,7 @@ logger.info(`MongoDb: ${connectionOpts.db.address}`);
 
 const agenda = new Agenda(connectionOpts);
 
-const jobTypes = ['appointment']; //maybe loadthem from filesystem?
+const jobTypes = ['appointment']; //TODO: maybe loadthem from filesystem? or just hardcode it?
 
 jobTypes.forEach(type => {
     require('./jobs/' + type)(agenda);
@@ -18,18 +18,19 @@ if (jobTypes.length) {
 }
 agenda.on('ready', function () {
     logger.info('Agenda is ready')
-    agenda.now('appointment');
 });
 
 const scheduler = {
     getAppointments: async () => {
-        logger.info('getAppointments - starting');
+        logger.info('scheduler.getAppointments - starting');
         const jobs = await agenda.jobs({ lastFinishedAt: null });
-        logger.info(`getAppointments: got ${jobs.length} jobs.`);
+        logger.info(`scheduler.getAppointments: got ${jobs.length} jobs.`);
         return jobs;
     },
-    create: (time, data) => {
-        agenda.schedule(time, 'appointment', data)
+    create: (when, event) => {
+        logger.info('scheduler.create - starting');
+        agenda.schedule(when, 'appointment', event)
+        logger.info(`scheduler.create - starting: ${when} - ${event}`);
     }
 }
 
