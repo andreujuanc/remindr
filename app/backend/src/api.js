@@ -10,27 +10,27 @@ module.exports = polka()
         extended: true
     }))
     .use(bodyParser.json())
+    .use(async (req, res, next) => {
+        logger.info(`${req.method} API /scheduler START`);
+        const a = await next();
+        logger.info(`${req.method} API /scheduler END`);
+    })
     .get('/', async (req, res) => {
-        logger.info('GET API /scheduler START');
         const list = await scheduler.getAppointments()
             .catch(err => {
                 logger.error('GET API /scheduler');
                 send(res, 404);
-            });;
-        logger.info('GET API /scheduler END');
+            });
         send(res, 200, list);
     })
     .post('/', (req, res) => {
-        logger.info(`Appointment: Scheduling`);
         try {
             const when = req.body.when;
             const event = req.body.event;
             const appointment = scheduler.create(when, event);
             send(res, 200, appointment);
-            logger.info(`Appointment: Scheduled`);
         } catch (ex) {
             logger.error(ex)
-            send(res, 500, { message: ex.message } );
+            send(res, 500, { message: ex.message });
         }
-    })
-
+    });

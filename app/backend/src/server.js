@@ -1,13 +1,10 @@
 const polka = require('polka');
 const logger = require('./logger');
-const agenda = require('./scheduler');
 const api = require('./api');
 
 logger.info('Starting Remindr')
 
-const { PORT=3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG='notset' } = process.env;
-
-logger.info(`TESTING ENV VARS: ${OMG}`)
+const { PORT = 3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG = 'notset' } = process.env;
 
 polka()
     .use('scheduler', api)
@@ -15,6 +12,9 @@ polka()
         res.end(`OK - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
     })
     .listen(PORT, err => {
-        if (err) throw err;
+        if (err) {
+            logger.error(err);
+            throw err;
+        }
         logger.info(`Running on port ${PORT}`);
     });
