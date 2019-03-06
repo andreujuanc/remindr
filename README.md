@@ -1,4 +1,4 @@
-# remindr
+# remindr [![Maintainability](https://api.codeclimate.com/v1/badges/2eaf982171034f6d906c/maintainability)](https://codeclimate.com/github/andreujuanc/remindr/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2eaf982171034f6d906c/test_coverage)](https://codeclimate.com/github/andreujuanc/remindr/test_coverage)
 
 A basic reminder service that uses:
 
