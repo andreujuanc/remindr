@@ -3,3 +3,16 @@ cp -a /infrasourceTMP/. /infrasource
 export KUBECONFIG=/infrasource/kubeconfig.yaml
 cd /infrasource
 kubectl cluster-info
+cd charts/remindr
+
+
+helm repo add bitnami https://charts.bitnami.com/bitnami
+#helm dep list
+helm dep update
+helm dep build
+helm lint .
+
+helm install . --name remindr --set serviceType=LoadBalancer
+#helm ls --all remindr
+#kubectl port-forward --namespace default svc/remindr-remindr 80:80
+#helm upgrade remindr .

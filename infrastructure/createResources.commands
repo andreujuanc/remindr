@@ -33,3 +33,5 @@ pulumi stack output kubeconfig > kubeconfig.yaml
 cp key.rsa ../infrasourceTMP/
 cp key.rsa.pub ../infrasourceTMP/
 cp kubeconfig.yaml ../infrasourceTMP/
+
+helm init

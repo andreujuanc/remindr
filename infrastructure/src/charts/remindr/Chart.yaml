@@ -13,7 +13,7 @@ home: http://nodejs.org/
 sources:
 - https://github.com/bitnami/bitnami-docker-node
 maintainers:
-- name: Bitnami
-  email: containers@bitnami.com
+- name: Juan Carlos Andreu
+  email: contact@andreujuan.com
 engine: gotpl
 icon: https://bitnami.com/assets/stacks/nodejs/img/nodejs-stack-110x117.png
