@@ -34,7 +34,7 @@ import { k8sCluster, k8sProvider } from "./cluster";
 // );
 
 export let cluster = k8sCluster.name;
-export let kubeConfig = k8sCluster.kubeConfigRaw;
+export let kubeconfig = k8sCluster.kubeConfigRaw;
 //export let serviceIP = remindrChart.resources;
     // .getResourceProperty("v1/Service", "remindr-node", "status")
     // .apply(status => status.loadBalancer.ingress[0].ip);
