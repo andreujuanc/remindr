@@ -7,7 +7,7 @@ logger.info('Starting Remindr')
 const { PORT = 3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG = 'notset' } = process.env;
 
 polka()
-    .use('scheduler', api)
+    .use('/scheduler', api)
     .get('/', (req, res) => {
         res.end(`OK - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
     })

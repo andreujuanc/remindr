@@ -95,6 +95,8 @@ spec:
         {{- end }}
         - name: DATA_FOLDER
           value: "/app"
+        - name: DOCKER_IMAGE_TAG
+          value: {{ .Values.image.tag | quote }}
 {{- if .Values.extraEnv }}
 {{ toYaml .Values.extraEnv | indent 8 }}
 {{- end }}
