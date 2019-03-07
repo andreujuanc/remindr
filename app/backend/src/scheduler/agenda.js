@@ -1,8 +1,8 @@
 const logger = require('../logger');
 const Agenda = require('agenda');
 
-const { MONGO_URL } = process.env;
-const connectionOpts = { db: { address: `mongodb://${MONGO_URL}/remindr-agenda`, collection: 'agendaJobs' } };
+const { DATABASE_HOST, DATABASE_PORT } = process.env;
+const connectionOpts = { db: { address: `mongodb://${DATABASE_HOST}:${DATABASE_PORT}/remindr-agenda`, collection: 'agendaJobs' } };
 logger.info(`MongoDb: ${connectionOpts.db.address}`);
 
 module.exports = function () {
