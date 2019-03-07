@@ -1,6 +1,5 @@
 echo Starting DeployApp Script
-set KUBECONFIG=/infrasource/kubeconfig.yaml
+export KUBECONFIG=kubeconfig.yaml
 cp -a /infrasourceTMP/. /infrasource
 cd /infrasource
-ls
 kubectl cluster-info
