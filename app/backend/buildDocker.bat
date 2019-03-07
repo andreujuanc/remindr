@@ -1,1 +1,1 @@
-docker build -t andreujuanc/remindr .
+docker build -t andreujuanc/remindr . -
