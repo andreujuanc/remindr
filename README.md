@@ -15,6 +15,7 @@ $ cd infrastructure
 $ copy .env.template .env #Fill in the variables 
 $ buildDocker.bat
 $ createResources.bat
+$ deployApp.bat
 ~~~~
 
 # TASK
