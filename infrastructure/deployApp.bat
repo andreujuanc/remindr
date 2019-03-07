@@ -5,4 +5,4 @@ REM https://github.com/docker/cli/pull/1273
     --rm^
     --env-file ./.env^
     -v  ~\source\repos\andreujuanc\remindr\infrastructure\src:/infrasourceTMP^
-    andreujuanc/pulumi-azure-tools:latest  /bin/bash -c "bash ") < createResources.commands
+    andreujuanc/pulumi-azure-tools:latest  /bin/bash -c "bash ") < deployApp.commands

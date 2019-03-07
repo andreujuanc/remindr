@@ -1,0 +1,6 @@
+ECHO Starting DeployApp Script
+cp -a /infrasourceTMP/. /infrasource
+cd /infrasource
+
+kubectl cluster-info
+
