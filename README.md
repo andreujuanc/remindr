@@ -3,7 +3,7 @@
 
 
 
-### Build Locally	
+### Local run	
 ~~~~ bash
 $ cd app/backend
 $ docker-compose up --build
@@ -12,6 +12,7 @@ $ docker-compose up --build
 ### Run tests
 ~~~~ bash
 $ cd app/backend/src
+$ npm install
 $ npm test
 ~~~~
 
@@ -26,9 +27,9 @@ $ az account list
 ~~~~ bash
 $ cd infrastructure
 $ copy .env.template .env #Fill in the variables 
-$ buildDocker.bat
-$ createResources.bat
-$ deployApp.bat
+$ buildDocker.bat #This docker image is just a CLI image with all the tools needed int it.
+$ createResources.bat #This one executes a series of commands with pulumi to create the resources
+$ deployApp.bat #this script does the actual deployment via helm install
 ~~~~
 
 # TASK
