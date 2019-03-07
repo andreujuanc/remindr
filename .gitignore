@@ -65,3 +65,5 @@ typings/
 /node_modules/
 key.rsa
 key.rsa.pub
+
+kubeconfig.yaml
