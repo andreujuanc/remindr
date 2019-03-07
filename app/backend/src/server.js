@@ -9,7 +9,7 @@ const { PORT = 3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG = 'notset' } = process.env;
 polka()
     .use('/scheduler', api)
     .get('/', (req, res) => {
-        res.end(`OK - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
+        res.end(`OK! - DOCKER_IMAGE_TAG: ${DOCKER_IMAGE_TAG} - Time: ${new Date().toISOString()}`);
     })
     .listen(PORT, err => {
         if (err) {
