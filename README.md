@@ -9,6 +9,12 @@ $ cd app/backend
 $ docker-compose up --build
 ~~~~
 
+### 
+~~~~ bash
+$ cd app/backend/src
+$ npm test
+~~~~
+
 ### Get Azure service principal values
 ~~~
 $ az ad sp list --show-mine --query '[].{"AppName":displayName, "ARM_CLIENT_ID":"appId", "ARM_TENANT_ID":"appOwnerTenantId", "A": homepage}'
@@ -30,10 +36,10 @@ $ deployApp.bat
 
 A basic reminder service that uses:
 
-    - Node.js + Express (or another framework of your choice)
-    - Winston
-    - Agenda.js (https://github.com/agenda/agenda)
-    - MongoDB
+- Node.js + Express (or another framework of your choice)
+- Winston
+- Agenda.js (https://github.com/agenda/agenda)
+- MongoDB
 
  
 
@@ -45,10 +51,10 @@ Uses Agenda (using MongoDB) to log the appointments to the console using the Win
 
 Deploy it to a Kubernetes cluster (either minikube or a cloud provider - e.g. Azure AKS, GCP container engine, etc.) by using 2 Helm Charts
 
-    - the Node app itself
-    - the MongoDB database
+- the Node app itself
+- the MongoDB database
 
 ## TODO:
 
-    - Add documentation to the code
-    - Add unit tests to the code
+- ~~Add documentation to the code~~
+- ~~Add unit tests to the code~~

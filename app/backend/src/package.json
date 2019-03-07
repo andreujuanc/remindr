@@ -20,10 +20,11 @@
     "jest": "^24.1.0"
   },
   "jest": {
-    "collectCoverage" : true,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.js",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!coverage/**"
     ]
   }
 }
