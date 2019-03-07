@@ -9,7 +9,7 @@ $ cd app/backend
 $ docker-compose up --build
 ~~~~
 
-### 
+### Run tests
 ~~~~ bash
 $ cd app/backend/src
 $ npm test
