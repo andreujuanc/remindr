@@ -30,8 +30,10 @@ pulumi up -y
 
 pulumi stack output kubeconfig > kubeconfig.yaml
 
+#we need this in other scripts
 cp key.rsa ../infrasourceTMP/
 cp key.rsa.pub ../infrasourceTMP/
 cp kubeconfig.yaml ../infrasourceTMP/
 
+#Install tiller in the cluster
 helm init

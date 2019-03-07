@@ -12,7 +12,10 @@ helm dep update
 helm dep build
 helm lint .
 
-#helm install --name remindr . --set image.tag=v0.7
-#helm install --debug --dry-run . --set image.tag=v0.7
+echo Installing Helm
+helm install --name remindr . --set image.tag=v0.8
+#helm install --debug --dry-run . --set image.tag=v0.8
 #helm ls --all remindr
+#helm status remindr
+echo Updating Helm
 helm upgrade remindr . --set image.tag=v0.8
