@@ -1,4 +1,24 @@
 # remindr [![Maintainability](https://api.codeclimate.com/v1/badges/2eaf982171034f6d906c/maintainability)](https://codeclimate.com/github/andreujuanc/remindr/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/2eaf982171034f6d906c/test_coverage)](https://codeclimate.com/github/andreujuanc/remindr/test_coverage)
+#### As of today, most of the scripts are meant to run in windows. 
+
+
+
+### Build Locally	
+~~~~ bash
+$ cd app/backend
+$ docker-compose up --build
+~~~~
+
+### Deploy to azure
+~~~~ bash
+$ cd infrastructure
+$ copy .env.template .env #Fill in the variables 
+$ buildDocker.bat
+$ createResources.bat
+~~~~
+
+# TASK
+
 
 A basic reminder service that uses:
 
@@ -10,7 +30,7 @@ A basic reminder service that uses:
  
 
 Accepts a POST request taking a single JSON input:
-{ when: "<ISO_format_string>", event: "<freeform_string>" }
+`{ when: "<ISO_format_string>", event: "<freeform_string>" }`
  
 
 Uses Agenda (using MongoDB) to log the appointments to the console using the Winston logger at both appointment creation time, and at the "when" DateTime.

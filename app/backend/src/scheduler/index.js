@@ -1,36 +1,36 @@
-const Agenda = require('agenda');
-
 const logger = require('../logger');
-const { MONGO_URL } = process.env;
-const connectionOpts = { db: { address: `mongodb://${MONGO_URL}/remindr-agenda`, collection: 'agendaJobs' } };
-logger.info(`MongoDb: ${connectionOpts.db.address}`);
+const createAgenda = require('./agenda');
 
-const agenda = new Agenda(connectionOpts);
-
-const jobTypes = ['appointment']; //TODO: maybe loadthem from filesystem? or just hardcode it?
-
-jobTypes.forEach(type => {
-    agenda.define(type, require('./jobs/' + type));
-});
-
-if (jobTypes.length) {
-    agenda.start(); // Returns a promise, which should be handled appropriately
-}
-agenda.on('ready', function () {
-    logger.info('Agenda is ready')
-});
+const agenda = createAgenda();
 
 function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
 }
-
+/**
+ * Scheduler
+ * creates and retrieves appointments
+ */
 const scheduler = {
+    /**
+     * Retrieves all appointments
+     * 
+     * @async
+     * @return {Promise<Array>} Array of appointments
+     */
     getAppointments: async () => {
         logger.info('scheduler.getAppointments - starting');
         const jobs = await agenda.jobs({ lastFinishedAt: null });
         logger.info(`scheduler.getAppointments: got ${jobs.length} jobs.`);
         return jobs;
     },
+    /**
+     * Creates an appointment
+     * 
+     * @async
+     * @param {string} when - ISO date of when the appointment will be scheduled on
+     * @param {string} event - Free form string. Event description
+     * @return {Promise<object>} Created appointment
+     */
     create: (when, event) => {
         logger.info('scheduler.create - starting');
         if (!when) {
@@ -46,11 +46,12 @@ const scheduler = {
         if (!event) {
             throw new Error('Parameter not found: "event" is mandatory')
         }
-        else if(typeof event !== 'string'){
+        else if (typeof event !== 'string') {
             throw new Error('Parameter "event" must be a string')
         }
-        agenda.schedule(when, 'appointment', { event })
+        const appointment = agenda.schedule(when, 'appointment', { event })
         logger.info(`scheduler.create - starting: ${when} - ${event}`);
+        return appointment;
     }
 }
 
