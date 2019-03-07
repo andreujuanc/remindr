@@ -9,6 +9,13 @@ $ cd app/backend
 $ docker-compose up --build
 ~~~~
 
+### Get Azure service principal values
+~~~
+$ az ad sp list --show-mine --query '[].{"AppName":displayName, "ARM_CLIENT_ID":"appId", "ARM_TENANT_ID":"appOwnerTenantId", "A": homepage}'
+$ az ad sp credential reset --name <NAME HERE>
+$ az account list
+~~~
+
 ### Deploy to azure
 ~~~~ bash
 $ cd infrastructure
