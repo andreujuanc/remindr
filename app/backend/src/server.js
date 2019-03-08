@@ -4,7 +4,7 @@ const api = require('./api');
 
 logger.info('Starting Remindr')
 
-const { PORT = 3000, NODE_ENV, OMG, DOCKER_IMAGE_TAG = 'notset' } = process.env;
+const { PORT = 3000, DOCKER_IMAGE_TAG = 'notset' } = process.env;
 /**
  * Simple polka server with two endpoints
  * one for the scheduler

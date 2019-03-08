@@ -20,7 +20,7 @@ pulumi config set applicationClientSecret --secret $ARM_CLIENT_SECRET
 # helm dependency update
 
 # THIS NEEDS TESTING
-if [ ! -f /tmp/foo.txt ]; then
+if [ ! -f key.rsa ]; then
     echo "key not found, generating one"
     ssh-keygen -t rsa -f key.rsa -P $CLUSTER_PASSWORD
 fi
@@ -29,6 +29,7 @@ pulumi config set sshPublicKey < key.rsa.pub
 pulumi up -y
 
 pulumi stack output kubeconfig > kubeconfig.yaml
+export KUBECONFIG=/infrasourceTMP/kubeconfig.yaml
 
 #we need this in other scripts
 cp key.rsa ../infrasourceTMP/
